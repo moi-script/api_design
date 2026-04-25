@@ -8,7 +8,7 @@ const app = express();
 // Create the rate limit rule
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 100, // Limit each IP to 100 requests per windowMs
+  limit: 200, // Limit each IP to 100 requests per windowMs
   standardHeaders: 'draft-7', // combined RateLimit header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   message: {
@@ -54,3 +54,38 @@ app.listen(3000, () => console.log('Server running on port 3000'));
 // });
 
 // app.use(limiter);
+
+
+
+
+
+// CLIENT SIDE RATE LIMIT for UI UX optimazation
+
+
+
+// A reusable throttle function
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            // The "gate" stays closed for 'limit' milliseconds
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+// Your actual API call logic
+const fetchItems = async () => {
+    console.log("🚀 Request sent to server at:", new Date().toLocaleTimeString());
+    try {
+        const res = await fetch('http://localhost:3000/api/items');
+        const data = await res.json();
+        console.log("Data received:", data);
+    } catch (err) {
+        console.error("Fetch failed:", err);
+    }
+};
+
+// Create a version of fetchItems that is limited to 1 call every 2 seconds
+// const throttledFetch = throttle(fetchItems, 2000);
