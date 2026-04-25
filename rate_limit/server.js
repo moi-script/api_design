@@ -87,5 +87,24 @@ const fetchItems = async () => {
     }
 };
 
+// handling in server 
+
+const smartFetch = async () => {
+    const res = await fetch('/api/items');
+
+    if (res.status === 429) {
+        const retryAfter = res.headers.get('Retry-After') || 5; // Seconds
+        console.warn(`Rate limited! Disabling button for ${retryAfter} seconds.`);
+        
+        // Example: Disable a "Load More" button in the UI
+        const btn = document.querySelector('#load-more');
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            btn.disabled = false;
+        }, retryAfter * 1000);
+    }
+};
+
 // Create a version of fetchItems that is limited to 1 call every 2 seconds
 // const throttledFetch = throttle(fetchItems, 2000);
