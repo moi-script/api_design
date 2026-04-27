@@ -1,0 +1,23 @@
+
+
+
+1. User clicks "Login with GitHub"
+2. Redirect to GitHub
+3. User logs in + approves
+4. GitHub redirects back with code
+5. Your server exchanges code → access token
+6. You fetch user info
+7. You create session (or JWT)
+
+
+
+npm install express express-session passport passport-github2 dotenv
+
+
+project/
+├── server.js
+├── config/
+│   └── passport.js
+├── routes/
+│   └── auth.js
+└── .env

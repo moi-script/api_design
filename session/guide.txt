@@ -1,0 +1,76 @@
+project/
+│
+├── server.js
+├── routes/
+│   └── auth.js
+├── middleware/
+│   └── isAuthenticated.js
+└── config/
+    └── session.js
+
+
+npm init -y
+npm install express express-session cookie-parser
+npm install connect-pg-simple
+
+
+
+
+// HOW SESSION works
+
+
+
+POST /login --> client sends
+{
+  "username": "admin",
+  "password": "1234"
+}
+
+
+// Server  process
+ 
+ // check credentials
+   
+sessionID = "abc123"
+
+
+// creates session object names in object to stores in db 
+store = {
+  "abc123": {
+    user: { id: 1, username: "admin" }
+  }
+}
+
+
+
+// Set back thhe cookie of session object name
+
+Set-Cookie: sid=abc123; HttpOnly
+
+
+
+// Browser auto process it  
+
+
+
+// Next request 
+
+GET /profile
+Cookie: sid=abc123 // server will process thhis request and point to the object session name from data base
+
+
+// saved it into request object 
+req.session = {
+  user: { id: 1, username: "admin" }
+}
+
+
+//  makes condition 
+
+if (!req.session.user) → reject
+
+
+// when logout
+POST /logout
+
+delete store["abc123"] // also when delete method in database 
