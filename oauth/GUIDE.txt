@@ -21,3 +21,15 @@ project/
 ├── routes/
 │   └── auth.js
 └── .env
+
+🔑 Step 2: Register OAuth App (GitHub)
+
+ https://github.com/settings/developers
+
+http://localhost:3000/auth/github/callback
+
+
+-->  needs to get thhe 
+
+GITHUB_CLIENT_ID=xxx
+GITHUB_CLIENT_SECRET=xxx
