@@ -1,0 +1,90 @@
+
+
+// Caching Strategies 
+// Client Side
+  -- in client side this is usually for data that will remain unchange for a period of Time
+  -- like, images, videos, backgrounds
+  -- we should not implement a client side cache if data is being change fast and needs fast rendering
+  
+  -- Techniques
+     -- HTTP cache headers
+     -- Local Storage
+     -- Service Workers
+     -- Cache API
+  
+  -- This benefits
+     -- Improved performance
+     -- Better User experience
+     -- Reduced Network Traffic
+     -- Offline Access
+
+  -- The disadvantages 
+     -- Outdated data
+     -- Limited Storage
+     -- Security Concerns
+     -- Complex Implementation
+
+
+// Server Side API Caching
+     -- Repeated Request for the same data
+     -- Heavy load on the API server
+     -- Long Response Time
+     -- Static data
+
+
+   -- Techniques
+     -- Database Caching
+     -- In memory Caching
+     -- File system Caching
+     -- Reverse Proxy Caching
+     -- Content Delivery Network (CDN) caching
+
+    
+
+
+// Factors when choosing Caching Strategies
+
+   -- Data Freshness
+   -- Data Size
+   -- Data Access Patterns
+   -- Performance Goal
+   -- Cost
+   -- Complexity
+   -- Scalability
+
+
+
+
+// Implementation
+
+ -- Define Caching Goals
+ -- Use HTTP cache headers
+ -- Use Cache Control headers
+ -- Store frequently used data in memory 
+ -- Use a cache key
+ -- Invalidate Cache Entries
+ -- Monitor Cache Performance
+ -- Consider Using a caching library
+
+
+// Testing cache
+ -- Test Cache Behavior with various cache headers
+ -- Test cache invalidation
+ -- Use a tool to inspect cache headers
+ -- Monitor cache hit and miss rates
+ -- Test performance with and without caching
+ -- Test with different cache storage types
+ -- Test with different cache experience policies
+ -- Use logging to debuf cache issues
+
+
+// Pitfalls to avoid when using API caching
+ -- Overcaching
+ -- Undercaching
+ -- Caching Sensitive Data
+ -- Not Considering Cache Consistency
+ -- Not Testing cache Behavior
+ -- Not using appropriate cache storage types 
+ -- Not monitoring cache performance
+
+//  Data to avoid caching with

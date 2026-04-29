@@ -1,0 +1,15 @@
+
+
+Load Balancing is a distribution of computational workload between two or more computer
+
+
+Static Load Balancing Algorithm
+
+Dynamic Load Balancing Algorithm
+ -- least connection
+ -- weigted least connection
+ -- weighted response time
+ -- resource based
+
+
+ 

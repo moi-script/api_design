@@ -1,0 +1,15 @@
+
+
+// Latency (speed per request)
+// Throughput (how many request it can handle)
+// Reource Efficiency 
+// Stability Under load
+
+// Monitoring 
+ -- Metrics (Response Time, Latency, Failed Request Rate, Throughput, Availability);
+ 
+
+
+
+
+

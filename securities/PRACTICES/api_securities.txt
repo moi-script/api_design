@@ -1,0 +1,11 @@
+
+// Authentication
+// JWT
+// Access Controll
+// OAuth
+//Input
+// Processing
+// Output
+// CI/CD
+// Monitoring
+
