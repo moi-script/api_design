@@ -6,10 +6,16 @@ Load Balancing is a distribution of computational workload between two or more c
 Static Load Balancing Algorithm
 
 Dynamic Load Balancing Algorithm
- -- least connection
- -- weigted least connection
- -- weighted response time
- -- resource based
+ -- least connection - distribution of equal consumers in a server
+ -- weigted least connection - if server is not equally aligned, we can weight some server
+ -- weighted response time - it uses algorith to pick which server had quickest response time for fast services
+ -- resource based - it measures server CPU and memory it requires agents before distributing traffic to that server
 
+
+
+ Static Load Balancing Algorithm 
+  -- Round robin - It distributes traffic to a list of servers in rotation using the Domain Name System
+  -- Weighted round robin - Server that can handle more will much more consume traffic
+  -- IP hash - combining source and destination into hash then connection is assigned to a specific server 
 
  

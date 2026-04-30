@@ -1,0 +1,19 @@
+
+
+function asyncRun(index) {
+    const rand = Math.round((Math.random() * 1000) * 10);
+
+    setTimeout(() => {
+        console.log('Finished task ', rand, 'index -->', index);
+    }, rand)
+
+}
+const processes = Array.from({length : 10}, () => {
+    return asyncRun;
+})
+
+// for(let i =0; i<processes.length; i++) {
+//     processes[i](i);
+// }
+
+// console.log('Last part');

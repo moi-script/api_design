@@ -1,0 +1,1 @@
+https://hackernoon.com/how-to-improve-your-backend-by-adding-retries-to-your-api-calls-83r3udx
