@@ -1,0 +1,37 @@
+Event Driven  Architecture --> It had event producers that generate a stream of events, that consumer need to listen
+
+Producers
+ -- Public subscribe --> after events processes, published -> subscriber -> recieved not in log
+    -- azure event grid
+ -- Event Streaming  --> clients dont subscribe to the stream, also clients can process the stream which it can do things there
+    -- azure event hubs
+
+Consumers
+
+ -- Simple Event Processing --> event that suddenly triggers an action in the consumer
+    -- Azure functions, Event Grid Trigger, Azure Service Bus triggers
+ -- Basic Event Correlation --> When event triggers it process them and connects some events by their identifier and it can be process it later 
+    -- NServiceBus, MassTransit
+ -- Complext Event Processing --> It is more complex and can marked some event to follow specific conditions 
+    -- Azure Stream analytics
+ -- Event Stream Processing --> Pipepline that ingest event and feed them into stream processor, this act can transform stream
+
+
+
+ Payload to Control for Consumers
+
+ -- Include all required attributes in the payload --> this means that many data info can cost a bandwith consumption but benifits in more data
+    -- system of records
+ -- Include only keys in the payload --> This is little more info but can be worse if key query index from data is being trigger again and again
+    -- put your events on a diet
+
+Summary :
+ Each consumer is being process by a single point, it needs more instance to process large volume and frequency of events 
+  -- Minimize coordination 
+
+
+
+
+ Topologies : 
+
+    -- Broker Topology --> 
