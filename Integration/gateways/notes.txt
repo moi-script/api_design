@@ -1,0 +1,25 @@
+
+Api Gateway --> It is a part of api management, Protecting, controlling, and shaping traffic before it hits your system
+
+    Low Latency
+
+    Traffic Management
+
+        --Rate Limiting
+        --Request Throttling
+        --Concurrency Control Policies
+        --Circuit Breaking Policies
+        --Dynamic Load Balancing
+
+    Cost Effectiveness
+
+        --Flexibility
+        --Infastracture
+        --Scalability
+
+
+Client → API Gateway → Service → emits event → Event Bus → Consumers
+
+API Gateway → “Front door”
+Services → “Workers”
+Event Bus → “Communication system between workers”
