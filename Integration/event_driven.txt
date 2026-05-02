@@ -34,4 +34,18 @@ Summary :
 
  Topologies : 
 
-    -- Broker Topology --> 
+    -- Broker Topology --> It broadcast events to the entire system,  can be simple, no central orchestration, consumer can recieve or ignore 
+
+    -- Mediator topology --> Address some  weakness from Broker Topology, there is event mediator that control the  flow of events
+
+
+
+When to use this Architecture 
+
+    -- Multiple subsytems must process the same events
+    -- Real time processing with minimum time lag is requiered
+    -- Complex event processing such as pattern matching or aggregation over time windows is requiered
+    -- high volume and high velocity of data are requiered such as IoT 
+    -- Decouple producers and consumers for independent scalability and reliability goals
+
+    
