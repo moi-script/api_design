@@ -1,0 +1,138 @@
+// Bulk --> many items being processed, ex. same property different identifier or data in a single Request
+// Batch -- taking the data into smaller part and make it manageable
+        queues
+        workers
+        events
+
+
+        API → enqueue job → workers consume → process → store result
+
+
+import express from "express";
+
+const app = express();
+app.use(express.json());
+
+let jobs = {};
+
+// submit batch job
+app.post("/imports", (req, res) => {
+    const jobId = Date.now().toString();
+
+    jobs[jobId] = {
+        status: "pending",
+        progress: 0
+    };
+
+    // simulate async processing
+    processBatch(jobId);
+
+    res.json({ jobId, status: "pending" });
+});
+
+// check status
+app.get("/imports/:id", (req, res) => {
+    res.json(jobs[req.params.id]);
+});
+
+async function processBatch(jobId) {
+    jobs[jobId].status = "processing";
+
+    for (let i = 1; i <= 5; i++) {
+        await new Promise(r => setTimeout(r, 1000));
+        jobs[jobId].progress = i * 20;
+    }
+
+    jobs[jobId].status = "completed";
+}
+
+app.listen(3000, () => console.log("Server running"));
+
+
+// Using Queue
+
+
+const queue = [];
+
+app.post("/imports", (req, res) => {
+    const job = {
+        id: Date.now().toString(),
+        data: req.body,
+        status: "queued"
+    };
+
+    queue.push(job);
+
+    res.json({ jobId: job.id });
+});
+
+
+
+async function worker() {
+    while (true) {
+        if (queue.length > 0) {
+            const job = queue.shift();
+
+            console.log("Processing job:", job.id);
+
+            await new Promise(r => setTimeout(r, 2000));
+
+            console.log("Completed job:", job.id);
+        }
+
+        await new Promise(r => setTimeout(r, 500));
+    }
+}
+
+worker();
+
+
+
+
+
+async function processUsers(users) {
+    const chunkSize = 100;
+
+    for (let i = 0; i < users.length; i += chunkSize) {
+        const chunk = users.slice(i, i + chunkSize);
+
+        console.log("Processing chunk:", i / chunkSize);
+
+        await Promise.all(
+            chunk.map(user => saveUser(user))
+        );
+    }
+}
+
+function saveUser(user) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Saved:", user.name);
+            resolve();
+        }, 100);
+    });
+}
+
+
+
+
+// Using BullMQ
+
+import { Queue } from "bullmq";
+
+const queue = new Queue("imports");
+
+// add job
+await queue.add("import-users", { users });
+------------------------------------------------
+import { Worker } from "bullmq";
+
+new Worker("imports", async job => {
+    console.log("Processing:", job.data);
+});
+
+
+
+
+REST → tied to request lifecycle
+Batch → independent lifecycle
